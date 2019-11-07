@@ -48,16 +48,16 @@ def get_bearer_token(consumer_key=None, consumer_secret=None):
 
 
 def load_tweets_page(twitter_client, tweets_per_page, search_params):
+    search_params = {
+        'lang': 'en',
+
+        **search_params,
+
+        'count': tweets_per_page,
+        'tweet_mode': 'extended'
+    }
     logging.debug('Making search request with params: {}'.format(search_params))
-    result = twitter_client.search.tweets(
-        **{
-            'lang': 'en',
-
-            **search_params,
-
-            'count': tweets_per_page
-        }
-    )
+    result = twitter_client.search.tweets(**search_params)
     logging.debug(f'Got {len(result["statuses"])} tweets in response')
     return result
 
@@ -98,8 +98,9 @@ class TweetsLoader:
             min_id = min(x['id'] for x in result['statuses']) - 1
             max_ids.append(result['search_metadata']['max_id'])
 
-        self.since_id = max(max_ids)
-        logging.info(f'Loaded tweets up to {self.since_id}')
+        if max_ids:
+            self.since_id = max(max_ids)
+            logging.info(f'Loaded tweets up to {self.since_id}')
 
     def load_tweets(self, number_of_pages):
         tweets = list(self.load_tweets_iter(number_of_pages))
