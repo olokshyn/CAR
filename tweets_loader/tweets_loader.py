@@ -18,16 +18,16 @@ BEARER_TOKEN_FILENAME = os.path.join(SECRETS_DIR, 'bearer_token')
 
 def get_app_creds():
     """
-    Load consumer key and consumer secret from secret.yml
+    Load consumer key and consumer secret from secret.yaml
 
-    secret.yml should have the following two properties:
+    secret.yaml should have the following two properties:
     - consumer_key
     - consumer_secret
     """
     with open(os.path.join(SECRETS_DIR, 'secret.yaml')) as secret_file:
         app_creds = yaml.load(secret_file, Loader=yaml.SafeLoader)
     if 'consumer_key' not in app_creds or 'consumer_secret' not in app_creds:
-        raise ValueError('secret.yml must contain consumer_key and consumer_secret')
+        raise ValueError('secret.yaml must contain consumer_key and consumer_secret')
     return app_creds
 
 

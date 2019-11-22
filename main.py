@@ -1,9 +1,10 @@
 import sys
 
-from tweets_loader import TweetsLoader
+from tweets_loader import TweetsLoader, configure_logging
 from tweets_analyzer import TweetsAnalyzer
 from textblob.download_corpora import download_all
 
+configure_logging()
 
 PAGES_PER_REQUEST = 5
 

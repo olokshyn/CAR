@@ -1,0 +1,8 @@
+{
+    "name": "TweetValue",
+    "type": "record",
+    "fields": [
+        {"name": "created_at", "type": "string"},
+        {"name": "full_text", "type": "string"}
+    ]
+}

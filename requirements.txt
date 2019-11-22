@@ -1,4 +1,6 @@
 twitter==1.18.0
 pyyaml==5.1.2
 textblob==0.15.3
-
+confluent-kafka==1.2.0
+confluent-kafka[avro]
+requests==2.22.0
