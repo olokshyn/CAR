@@ -1,2 +1,12 @@
-bootstrap.servers: kafka-server:9092
-schema.registry.url: http://kafka-server:8081
+bootstrap.servers: pkc-43n10.us-central1.gcp.confluent.cloud:9092
+api.version.request: true
+broker.version.fallback: 0.10.0.0
+api.version.fallback.ms: 0
+security.protocol: SASL_SSL
+sasl.mechanisms: PLAIN
+sasl.username: FROM_SECRETS_KEY
+sasl.password: FROM_SECRETS_SECRET
+schema.registry.url: https://psrc-lz3xz.us-central1.gcp.confluent.cloud
+schema.registry.basic.auth.credentials.source: USER_INFO
+schema.registry.basic.auth.user.info: FROM_SECRETS_KEY:FROM_SECRETS_SECRET
+debug: broker,topic,msg
