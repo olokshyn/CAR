@@ -26,7 +26,7 @@ def main():
                 'full_text': tweet['full_text']
             }
             logging.debug(f'Got tweet {tweet["id"]}: {tweet["full_text"]}')
-            producer.send(tweet['id'], tweet_value)
+            producer.send(key=tweet['id'], value=tweet_value)
             logging.debug(f'Produced tweet {tweet["id"]}')
 
     except Exception:

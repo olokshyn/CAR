@@ -9,4 +9,3 @@ sasl.password: FROM_SECRETS_SECRET
 schema.registry.url: https://psrc-lz3xz.us-central1.gcp.confluent.cloud
 schema.registry.basic.auth.credentials.source: USER_INFO
 schema.registry.basic.auth.user.info: FROM_SECRETS_KEY:FROM_SECRETS_SECRET
-debug: broker,topic,msg

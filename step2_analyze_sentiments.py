@@ -17,7 +17,7 @@ def analyze_tweet(tweet_id, tweet, analyzer: TweetsAnalyzer, producer: KafkaProd
     logging.debug(f'Got message: {tweet_id}: {tweet["full_text"]}')
     score = analyzer.analyze(tweet['full_text'])
     logging.debug(f'Analyzed message {tweet_id}, got score: {score}')
-    producer.send(tweet_id, score)
+    producer.send(key=tweet_id, value=score)
 
 
 def main():

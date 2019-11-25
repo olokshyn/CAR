@@ -1,0 +1,13 @@
+{
+    "name": "CARScore",
+    "type": "record",
+    "fields": [
+        {"name": "score", "type": "double"},
+        {"name": "tweets_count", "type": "long"},
+        {"name": "positive_tweets_count", "type": "long"},
+        {"name": "neutral_tweets_count", "type": "long"},
+        {"name": "negative_tweets_count", "type": "long"},
+        {"name": "first_tweet_id", "type": "long"},
+        {"name": "last_tweet_id", "type": "long"}
+    ]
+}
