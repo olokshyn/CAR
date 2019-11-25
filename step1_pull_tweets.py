@@ -13,6 +13,7 @@ configure_logging()
 
 def main():
     try:
+
         loader = TweetsLoader(q='brexit')
         producer = KafkaProducer(
             topic='tweets',
@@ -24,7 +25,10 @@ def main():
                 'created_at': tweet['created_at'],
                 'full_text': tweet['full_text']
             }
+            logging.debug(f'Got tweet {tweet["id"]}: {tweet["full_text"]}')
             producer.send(tweet['id'], tweet_value)
+            logging.debug(f'Produced tweet {tweet["id"]}')
+
     except Exception:
         logging.exception('Stopped worker')
         return 1
