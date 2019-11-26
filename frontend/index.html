@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Community Approval Score of Brexit</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+            integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+            crossorigin="anonymous"
+    >
+
+    <!-- Optional theme -->
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
+            integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ"
+            crossorigin="anonymous"
+    >
+
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"
+    ></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+            integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+            crossorigin="anonymous"
+    >
+    </script>
+
+    <script type="text/javascript">
+
+        function renderScoreData(scoreInfo) {
+            $('#label-score').text(Math.round(scoreInfo['score'] * 100000) / 100000)
+            $('#label-tweets-count').text(scoreInfo['tweets_count'])
+            $('#label-positive-tweets-count').text(scoreInfo['positive_tweets_count'])
+            $('#label-neutral-tweets-count').text(scoreInfo['neutral_tweets_count'])
+            $('#label-negative-tweets-count').text(scoreInfo['negative_tweets_count'])
+        }
+
+        function updateScoreData() {
+            $.ajax({
+                url: 'http://127.0.0.1:5000/',
+                crossDomain: true
+            }).done(function (data) {
+                console.log('Updating with the following data:', data)
+                renderScoreData(data)
+                updateScoreData()
+            })
+        }
+
+        $( document ).ready(function() {
+            updateScoreData()
+        });
+
+    </script>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Community Approval Score of Brexit</h1>
+                <p>We calculate it by doing sentiment analysis of Tweets and averaging the result.</p>
+                <p>Score of +1.0 means strongly positive, -1.0 - strongly negative, 0.0 - neutral.</p>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <label>Score:</label>
+                <label id="label-score"></label>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <label>Number of tweets analyzed:</label>
+                <label id="label-tweets-count"></label>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <label>Number of positive tweets:</label>
+                <label id="label-positive-tweets-count"></label>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <label>Number of neutral tweets:</label>
+                <label id="label-neutral-tweets-count"></label>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <label>Number of negative tweets:</label>
+                <label id="label-negative-tweets-count"></label>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

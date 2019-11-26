@@ -2,7 +2,7 @@ import os
 import sys
 import logging
 
-from flask import Flask
+from flask import Flask, jsonify
 
 from tweets_loader import configure_logging
 from kafka import KafkaConsumer, OFFSET_LATEST
@@ -39,9 +39,12 @@ def read_latest_score():
 
 @app.route('/')
 def serve_car_score():
+    logging.info('Serving request')
     score = read_latest_score()
     logging.info(f'Score: {score}')
-    return score
+    response = jsonify(score)
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
 
 
 def main():
