@@ -6,7 +6,7 @@ from tweets_loader import TweetsLoader, configure_logging
 from kafka import KafkaProducer
 
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
-PAGES_PER_REQUEST = 20
+PAGES_PER_REQUEST = 5
 
 configure_logging()
 
