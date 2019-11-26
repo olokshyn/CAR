@@ -6,7 +6,7 @@ from .kafka_config import load_producer_config
 
 class KafkaProducer:
 
-    def __init__(self, topic, value_schema_path, key_schema_path=None):
+    def __init__(self, topic, value_schema_path, key_schema_path=None, config=None):
         schema = {
             'default_value_schema': avro.load(value_schema_path)
         }
@@ -14,7 +14,10 @@ class KafkaProducer:
             schema['default_key_schema'] = avro.load(key_schema_path)
 
         self.producer = AvroProducer(
-            load_producer_config(),
+            {
+                **load_producer_config(),
+                **(config or {})
+            },
             **schema
         )
         self.topic = topic

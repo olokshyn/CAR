@@ -63,7 +63,7 @@ def main():
                         'last_tweet_id': last_tweet_id
                     }
                     logging.debug(f'Aggregated {tweets_count} tweets with score {score}, '
-                                  f'[{first_tweet_id}, {last_tweet_id}]')
+                                  f'[{first_tweet_id}, {last_tweet_id}]: {value}')
                     producer.send(value)
                     tweets_read_since_last_committed = 0
 

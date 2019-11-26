@@ -4,3 +4,4 @@ textblob==0.15.3
 confluent-kafka==1.2.0
 confluent-kafka[avro]
 requests==2.22.0
+flask==1.1.1
